@@ -1,25 +1,16 @@
-const User = require('../models/user')
-const Question = require('../models/question')
-
-
-exports.getHomePage = async ( req,res)=>  {
-  const users = await User.find()
-  const questions = await Question.find()
-
-    res.status(200).render('homePage',{users,questions})
+exports.getIndexPage= (req,res)=> {
+    console.log(req.session.userID)
+    console.log(req.session.userROLE)
+    res.status(200).render('index')
+}
+exports.getProductsPage =(req,res)=> {
+    res.status(200).render('products',products)
 } 
-
-exports.getPanelPage =(req,res)=> {
-    res.status(200).render('chat')
+exports.getRegisterPage =(req,res)=> {
+    res.status(200).render('register')
 } 
-
 
 exports.getLoginPage =(req,res)=> {
-
-
-  
-
     res.status(200).render('login')
 } 
-
 

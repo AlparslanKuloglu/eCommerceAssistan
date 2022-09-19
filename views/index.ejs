@@ -1,57 +1,180 @@
 <!DOCTYPE html>
 <html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<meta http-equiv="X-UA-Compatible" content="ie=edge" />
-		<link
-			rel="stylesheet"
-			href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css"
-			integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk="
-			crossorigin="anonymous"
-		/>
-		<link rel="stylesheet" href="css/style.css" />
-		<title>ChatCord App</title>
-	</head>
-	<body>
-		<div class="join-container">
-			<header class="join-header">
-				<h1><i class="fas fa-smile"></i> ChatCord</h1>
-			</header>
-			<main class="join-main">
-				<form action="chat.html">
-					<div class="form-control">
-						<label for="username">Username</label>
-						<input
-							type="text"
-							name="username"
-							id="username"
-							placeholder="Enter username..."
-							required
-						/>
-					</div>
-					<div class="form-control">
-						<label for="room">Room</label>
-						<form name="room" id="room">
-							<input type="hidden" name="room" value="oda1 " >
-							<button type="submit" class="btn">Join Chat</button>
-						</form>
-					</div>
 
-					<button class="open-button" onclick="openChat();" id="openButton">Canlı Destek</button>
-<div class="chat-popup" id="chatBox">
-	<form action="chat.ejs" class="chat-container">
-		<h1>Canlı desteğe hoş geldin,</h1>
-		<label>Adın:</label>
-		<input type="text" name="username" id="username" placeholder="Adını gir...">
-		<input type="hidden" name="room" value="15" >
-		<button type="submit" class="start-chat">CANLI DESTEĞİ BAŞLAT</button>
-		<button type="button" class="close-button" id="closeButton" onclick="closeChat();">KAPAT</button>
-	</form>
-</div>
-					
-				</form>
-			</main>
+    <!-- Basic -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">   
+   
+    <!-- Mobile Metas -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+ 
+     <!-- Site Metas -->
+    <title>Al-kullan.com   Kolayca al-sat</title>  
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <!-- Site Icons -->
+    <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon" />
+    <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <!-- Site CSS -->
+    <link rel="stylesheet" href="style.css">
+    <!-- ALL VERSION CSS -->
+    <link rel="stylesheet" href="css/versions.css">
+    <!-- Responsive CSS -->
+    <link rel="stylesheet" href="css/responsive.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/custom.css">
+
+    <!-- Modernizer for Portfolio -->
+    <script src="js/modernizer.js"></script>
+
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+<body class="host_version"> 
+
+    <!-- LOADER -->
+	<div id="preloader">
+		<div class="loader-container">
+			<div class="progress-br float shadow">
+				<div class="progress__item"></div>
+			</div>
 		</div>
-	</body>
+	</div>
+	<!-- END LOADER -->	
+	
+	<!-- Start header -->
+	<header class="top-navbar">
+		<nav class="navbar navbar-expand-lg navbar-light bg-light">
+			<div class="container-fluid">
+				<a class="navbar-brand" href="/">
+					<img src="images/Adsız.png" alt="" />
+				</a>
+				<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbars-host" aria-controls="navbars-rs-food" aria-expanded="false" aria-label="Toggle navigation">
+					<span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+				</button>
+				<div class="collapse navbar-collapse" id="navbars-host">
+					<ul class="navbar-nav ml-auto">
+						<li class="nav-item <½= page_name === 'index' && 'active' %> "><a class="nav-link" href="/products">Ürünler</a></li>
+                    
+					
+
+					 <% if(userROLE==="Customer") {  %>
+							
+						<li class="nav-item"><a class="nav-link" href="/myBasket">Sepetim</a></li>
+						<% }%>
+
+
+					<% if(userROLE==="Seller") {  %>
+					
+						<li class="nav-item"><a class="nav-link" href="/myProducts">Satıştaki Ürünlerim</a></li>
+					
+					<% }%>
+                     
+					<% if(userROLE==="Seller") {  %>
+					
+						<li class="nav-item"><a class="nav-link" href="/myOrders">Siparişlerim </a></li>
+					
+					<% }%>
+
+
+					</ul>
+
+                
+
+
+					<% if(!userIN) {  %>
+
+					<ul class="nav navbar-nav navbar-right">
+                        <li><a class="hover-btn-new log orange mr-2" href="/login"><span><i class="fa fa-sign-in" aria-hidden="true"></i></span></a></li>
+						<li><a class="hover-btn-new log orange" href="/register"><span><i class="fa fa-user-plus" aria-hidden="true"></i></span></a></li>
+                    </ul> 
+					<%  }  %>
+                   
+
+                
+                      <% if(userIN) {  %>
+                        <ul class="nav navbar-nav navbar-right">
+                                <li><a class="hover-btn-new log mr-2" href="/users/logout"><span><i class="fa fa-sign-out" aria-hidden="true"></i></span></a></li>
+                        </ul>
+						<% } %>
+                            
+                     
+
+
+				</div>
+			</div>
+		</nav>
+	</header>
+	<!-- End header -->
+
+	
+	<div id="carouselExampleControls" class="carousel slide bs-slider box-slider" data-ride="carousel" data-pause="hover" data-interval="false" >
+		<!-- Indicators -->
+		<ol class="carousel-indicators">
+			<li data-target="#carouselExampleControls" data-slide-to="0" class="active"></li>
+		</ol>
+		<div class="carousel-inner" role="listbox">
+			<div class="carousel-item">
+				<div id="home" class="first-section" style="background-image:url('images/eticaret.webp');">
+					<div class="dtab">
+						<div class="container">
+							<div class="row">
+								<div class="col-md-12 col-sm-12 text-right">
+									<div class="big-tagline">
+										<h2><strong>Al-kullan'da </strong>hızlıca al ve sat</h2>
+										<p class="lead"> </p>
+											<a href="#" class="hover-btn-new"><span>Contact Us</span></a>
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+											
+									</div>
+								</div>
+							</div><!-- end row -->            
+						</div><!-- end container -->
+					</div>
+				</div><!-- end section -->
+			</div>
+				<div id="home" class="first-section" style="background-image:url('images/eticaret.webp');">
+					<div class="dtab">
+						<div class="container">
+							<div class="row">
+								<div class="col-md-12 col-sm-12 text-center">
+									<div class="big-tagline">
+										<h2><strong>Al-kullan'da </strong>kolayca al ve sat</h2>
+									
+											<a href="/products" class="hover-btn-new"><span>Ürünler'e Göz at</span></a>
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+											
+									</div>
+								</div>
+							</div><!-- end row -->            
+						</div><!-- end container -->
+					</div>
+				</div><!-- end section -->
+			</div>
+
+		</div>
+	</div>
+	
+    
+
+    
+
+
+    <a href="#" id="scroll-to-top" class="dmtop global-radius"><i class="fa fa-angle-up"></i></a>
+
+    <!-- ALL JS FILES -->
+    <script src="js/all.js"></script>
+    <!-- ALL PLUGINS -->
+    <script src="js/custom.js"></script>
+</body>
 </html>
